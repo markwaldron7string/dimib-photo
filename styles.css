@@ -1,7 +1,8 @@
 /* Tokens */
 :root {
   --bg: #0e0e0d;
-  --surface: #161614;
+  --surface: #252422;
+  --fade: 280px;
   --ink: #f2f0ea;
   --ink-soft: #b3b0a8;
   --ink-muted: #85827b;
@@ -252,7 +253,14 @@ section {
 
 /* Gallery */
 #work {
-  background: var(--surface);
+  /* Fades in from the hero photo's black bottom edge, and out into About */
+  background: linear-gradient(
+    to bottom,
+    #000 0,
+    var(--surface) var(--fade),
+    var(--surface) calc(100% - var(--fade)),
+    var(--bg) 100%
+  );
 }
 .gallery-tabs {
   position: relative;
@@ -438,7 +446,8 @@ section {
 
 /* Contact */
 #contact {
-  background: var(--surface);
+  /* Fades in from About; the footer below continues the same grey */
+  background: linear-gradient(to bottom, var(--bg) 0, var(--surface) var(--fade));
   color: var(--ink);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -544,8 +553,8 @@ section {
 
 /* Footer */
 footer {
-  background: var(--bg);
-  border-top: 1px solid var(--rule);
+  background: var(--surface);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: 32px var(--gutter);
   display: flex;
   align-items: center;
