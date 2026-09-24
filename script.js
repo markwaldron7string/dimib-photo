@@ -32,12 +32,34 @@ function moveUnderline(el) {
 // set initial position (after page loads)
 moveUnderline(document.querySelector(".tab-btn.active"));
 
-// update underline on click
+// update underline on click, and bring the tab fully into view on narrow screens
 tabBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     moveUnderline(btn);
+    btn.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
   });
 });
+
+/* Tab scroll arrows */
+const tabsScroller = document.querySelector(".tabs-scroller");
+const tabsBar = tabsScroller.querySelector(".gallery-tabs");
+
+function updateTabArrows() {
+  const { scrollLeft, scrollWidth, clientWidth } = tabsBar;
+  tabsScroller.classList.toggle("can-left", scrollLeft > 4);
+  tabsScroller.classList.toggle("can-right", scrollLeft + clientWidth < scrollWidth - 4);
+}
+
+tabsScroller.querySelectorAll(".tabs-arrow").forEach((arrow) => {
+  arrow.addEventListener("click", () => {
+    const dir = arrow.classList.contains("tabs-arrow-left") ? -1 : 1;
+    tabsBar.scrollBy({ left: dir * tabsBar.clientWidth * 0.7, behavior: "smooth" });
+  });
+});
+
+tabsBar.addEventListener("scroll", updateTabArrows, { passive: true });
+window.addEventListener("resize", updateTabArrows);
+updateTabArrows();
 
 
 /* Nav */

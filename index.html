@@ -174,7 +174,7 @@
           that makes each subject entirely themselves.
         </p>
         <div class="hero-actions">
-          <a href="#work" class="btn btn-light">See my work</a>
+          <a href="#work" class="btn btn-accent">See my work</a>
           <a href="#contact" class="btn btn-gold">Book a session</a>
         </div>
       </div>
@@ -186,24 +186,40 @@
       <h2 class="section-title">Portfolio</h2>
 
       <!-- TABS -->
-      <div class="gallery-tabs">
-        <button type="button" class="tab-btn active" data-tab="engagement">
-          <span>Engagements &amp; events</span>
+      <div class="tabs-scroller">
+        <button
+          type="button"
+          class="tabs-arrow tabs-arrow-left"
+          aria-label="Show earlier categories"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
         </button>
+        <div class="gallery-tabs">
+          <button type="button" class="tab-btn active" data-tab="engagement">
+            <span>Engagements &amp; events</span>
+          </button>
 
-        <button type="button" class="tab-btn" data-tab="family">
-          <span>Kids &amp; family</span>
+          <button type="button" class="tab-btn" data-tab="family">
+            <span>Kids &amp; family</span>
+          </button>
+
+          <button type="button" class="tab-btn" data-tab="portrait">
+            <span>Portraits</span>
+          </button>
+
+          <button type="button" class="tab-btn" data-tab="landscape">
+            <span>Landscapes &amp; travel</span>
+          </button>
+
+          <div class="tab-underline"></div>
+        </div>
+        <button
+          type="button"
+          class="tabs-arrow tabs-arrow-right"
+          aria-label="Show more categories"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
         </button>
-
-        <button type="button" class="tab-btn" data-tab="portrait">
-          <span>Portraits</span>
-        </button>
-
-        <button type="button" class="tab-btn" data-tab="landscape">
-          <span>Landscapes &amp; travel</span>
-        </button>
-
-        <div class="tab-underline"></div>
       </div>
 
       <!-- PANEL: Engagement & Events -->

@@ -218,12 +218,12 @@ nav {
 .btn:hover {
   background: var(--accent);
 }
-.btn-light {
-  background: #fff;
+.btn-accent {
+  background: var(--accent);
   color: var(--bg);
 }
-.btn-light:hover {
-  background: var(--accent);
+.btn-accent:hover {
+  background: #fff;
 }
 .btn-gold {
   background: rgba(14, 14, 13, 0.85);
@@ -262,12 +262,74 @@ section {
     var(--bg) 100%
   );
 }
+.tabs-scroller {
+  position: relative;
+  margin-bottom: 40px;
+}
 .gallery-tabs {
   position: relative;
   display: flex;
   gap: 28px;
-  margin-bottom: 40px;
   border-bottom: 1px solid var(--rule);
+  scrollbar-width: none;
+}
+.gallery-tabs::-webkit-scrollbar {
+  display: none;
+}
+/* Arrows only appear when the tab row overflows in that direction */
+.tabs-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: rgba(14, 14, 13, 0.9);
+  color: var(--ink);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: opacity 0.2s;
+}
+.tabs-arrow svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.tabs-arrow-left {
+  left: 0;
+}
+.tabs-arrow-right {
+  right: 0;
+}
+.tabs-scroller.can-left .tabs-arrow-left,
+.tabs-scroller.can-right .tabs-arrow-right {
+  opacity: 1;
+  pointer-events: auto;
+}
+.tabs-scroller.can-right .gallery-tabs {
+  mask-image: linear-gradient(to right, #000 calc(100% - 64px), transparent);
+}
+.tabs-scroller.can-left .gallery-tabs {
+  mask-image: linear-gradient(to left, #000 calc(100% - 64px), transparent);
+}
+.tabs-scroller.can-left.can-right .gallery-tabs {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 64px,
+    #000 calc(100% - 64px),
+    transparent
+  );
 }
 .tab-btn {
   font-family: var(--serif);
