@@ -24,7 +24,7 @@
           alt="Dimi B Photography"
         />
       </a>
-      <button class="nav-toggle" aria-label="Open menu">
+      <button type="button" class="nav-toggle" aria-label="Open menu">
         <span></span>
         <span></span>
       </button>
@@ -36,6 +36,8 @@
           <a
             href="https://instagram.com/dimibphoto"
             target="_blank"
+            rel="noopener"
+            aria-label="Instagram"
             class="social-link ig"
           >
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -48,6 +50,8 @@
           <a
             href="https://www.facebook.com/dimibphotography/"
             target="_blank"
+            rel="noopener"
+            aria-label="Facebook"
             class="social-link fb"
           >
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -60,6 +64,8 @@
           <a
             href="https://www.yelp.com/biz/dimi-b-photography-chantilly"
             target="_blank"
+            rel="noopener"
+            aria-label="Yelp"
             class="social-link yelp"
           >
             <svg viewBox="-2 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -73,6 +79,8 @@
           <a
             href="https://maps.app.goo.gl/16aUihFsh2ca9yyeA"
             target="_blank"
+            rel="noopener"
+            aria-label="Google"
             class="social-link google"
           >
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -179,19 +187,19 @@
 
       <!-- TABS -->
       <div class="gallery-tabs">
-        <button class="tab-btn active" data-tab="engagement">
+        <button type="button" class="tab-btn active" data-tab="engagement">
           <span>Engagements &amp; events</span>
         </button>
 
-        <button class="tab-btn" data-tab="family">
+        <button type="button" class="tab-btn" data-tab="family">
           <span>Kids &amp; family</span>
         </button>
 
-        <button class="tab-btn" data-tab="portrait">
+        <button type="button" class="tab-btn" data-tab="portrait">
           <span>Portraits</span>
         </button>
 
-        <button class="tab-btn" data-tab="landscape">
+        <button type="button" class="tab-btn" data-tab="landscape">
           <span>Landscapes &amp; travel</span>
         </button>
 
@@ -1512,10 +1520,14 @@
 
     <!-- LIGHTBOX -->
     <div id="lightbox" role="dialog" aria-modal="true">
-      <button id="lightbox-close" aria-label="Close">×</button>
-      <button id="lightbox-prev" aria-label="Previous">‹</button>
-      <img id="lightbox-img" src="" alt="" />
-      <button id="lightbox-next" aria-label="Next">›</button>
+      <button type="button" id="lightbox-close" aria-label="Close">×</button>
+      <button type="button" id="lightbox-prev" aria-label="Previous">‹</button>
+      <img
+        id="lightbox-img"
+        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+        alt=""
+      />
+      <button type="button" id="lightbox-next" aria-label="Next">›</button>
       <p id="lightbox-caption"></p>
     </div>
     <script src="script.js"></script>
