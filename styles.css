@@ -451,17 +451,8 @@ section {
   margin-bottom: 36px;
   max-width: 440px;
 }
-.contact-meta {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 10px 24px;
-  font-size: 1rem;
-}
-.contact-meta dt {
-  color: rgba(247, 246, 242, 0.45);
-}
-.contact-meta dd {
-  color: rgba(247, 246, 242, 0.85);
+.contact-intro p + p {
+  margin-top: -20px;
 }
 
 .contact-form {
@@ -512,9 +503,19 @@ section {
 .field select option {
   background: var(--surface);
 }
-.form-submit {
-  align-self: flex-start;
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
   margin-top: 4px;
+}
+.form-note {
+  font-family: var(--ui);
+  font-size: 0.85rem;
+  color: rgba(247, 246, 242, 0.45);
+}
+.form-submit {
   background: var(--accent);
   color: var(--bg);
 }

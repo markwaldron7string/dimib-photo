@@ -162,7 +162,7 @@ document.querySelectorAll(".fade-up").forEach((el) => {
 
 
 /* Active nav link */
-const sections = document.querySelectorAll("section[id], footer");
+const sections = document.querySelectorAll("section[id]");
 
 window.addEventListener(
   "scroll",
@@ -174,6 +174,13 @@ window.addEventListener(
         cur = s.id;
       }
     });
+
+    // The last section is too short to reach the top of the viewport,
+    // so treat hitting the bottom of the page as being on it
+    const atBottom =
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 2;
+    if (atBottom) cur = sections[sections.length - 1].id;
 
     navLinks.forEach((a) => {
       a.classList.toggle(
