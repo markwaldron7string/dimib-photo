@@ -112,15 +112,48 @@ function getActiveItems() {
 
 currentItems = getActiveItems();
 
+// Full-size images, loaded ahead of time so stepping through feels instant
+const fullImages = new Map();
+
+function loadFull(item) {
+  const src = item.dataset.src || item.querySelector("img").src;
+  if (!fullImages.has(src)) {
+    const img = new Image();
+    img.src = src;
+    fullImages.set(src, img);
+  }
+  return fullImages.get(src);
+}
+
 function openLightbox(idx) {
   lbIdx = idx;
   const item = currentItems[idx];
+  const thumb = item.querySelector("img");
+  const full = loadFull(item);
 
-  lbImg.src = item.dataset.src || item.querySelector("img").src;
+  // Show the already-cached grid thumbnail right away, then swap in the sharp version
+  if (full.complete && full.naturalWidth) {
+    lbImg.src = full.src;
+  } else {
+    lbImg.src = thumb.currentSrc || thumb.src;
+    full.addEventListener(
+      "load",
+      () => {
+        if (currentItems[lbIdx] === item) lbImg.src = full.src;
+      },
+      { once: true }
+    );
+  }
+  lbImg.alt = thumb.alt;
   lbCap.textContent = item.dataset.caption || "";
 
   lb.classList.add("open");
   document.body.style.overflow = "hidden";
+
+  // Neighbours next, so the next step is ready before it's needed
+  const n = currentItems.length;
+  loadFull(currentItems[(idx + 1) % n]);
+  loadFull(currentItems[(idx - 1 + n) % n]);
 }
 
 function closeLightbox() {
