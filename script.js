@@ -1,4 +1,4 @@
-/* ── TABS ──────────────────────────────────────────── */
+/* Tabs */
 const tabBtns = document.querySelectorAll(".tab-btn");
 const tabPanels = document.querySelectorAll(".gallery-panel");
 
@@ -16,7 +16,7 @@ tabBtns.forEach((btn) => {
   });
 });
 
-/* ── TAB UNDERLINE ─────────────────────────────────── */
+/* Tab underline */
 const underline = document.querySelector(".tab-underline");
 
 function moveUnderline(el) {
@@ -40,7 +40,7 @@ tabBtns.forEach((btn) => {
 });
 
 
-/* ── NAV ───────────────────────────────────────────── */
+/* Nav */
 const toggle = document.querySelector(".nav-toggle");
 const navMenu = document.querySelector(".nav-links");
 const navLinks = document.querySelectorAll(".nav-links a");
@@ -72,7 +72,7 @@ document.addEventListener("click", (e) => {
 });
 
 
-/* ── LIGHTBOX ─────────────────────────────────────── */
+/* Lightbox */
 const lb = document.getElementById("lightbox");
 const lbImg = document.getElementById("lightbox-img");
 const lbCap = document.getElementById("lightbox-caption");
@@ -140,7 +140,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 
-/* FADE-UP ON SCROLL */
+/* Fade-up on scroll */
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((e) => {
@@ -161,7 +161,7 @@ document.querySelectorAll(".fade-up").forEach((el) => {
 });
 
 
-/* ── ACTIVE NAV LINK ─────────────────────────────── */
+/* Active nav link */
 const sections = document.querySelectorAll("section[id], footer");
 
 window.addEventListener(
@@ -184,3 +184,38 @@ window.addEventListener(
   },
   { passive: true }
 );
+
+
+/* Contact form: submit in the background and report the result inline */
+const contactForm = document.querySelector(".contact-form");
+const formStatus = contactForm.querySelector(".form-status");
+const formSubmit = contactForm.querySelector(".form-submit");
+
+contactForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  formStatus.classList.remove("error");
+  formStatus.textContent = "";
+  formSubmit.disabled = true;
+  formSubmit.textContent = "Sending…";
+
+  try {
+    const res = await fetch(contactForm.action, {
+      method: "POST",
+      body: new FormData(contactForm),
+      headers: { Accept: "application/json" },
+    });
+    if (!res.ok) throw new Error(res.status);
+
+    contactForm.reset();
+    formStatus.textContent =
+      "Thanks, your message is on its way. I'll get back to you within 48 hours.";
+  } catch {
+    formStatus.classList.add("error");
+    formStatus.innerHTML =
+      'Sorry, that didn\'t go through. Please email me directly at <a href="mailto:dimibphoto@gmail.com">dimibphoto@gmail.com</a>.';
+  } finally {
+    formSubmit.disabled = false;
+    formSubmit.textContent = "Send message";
+  }
+});
