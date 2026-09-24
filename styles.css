@@ -189,6 +189,7 @@ nav {
 }
 .hero-caption {
   position: absolute;
+  cursor: default;
   right: var(--gutter);
   top: 24px;
   z-index: 1;
